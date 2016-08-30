@@ -1,14 +1,14 @@
-# ForemanApiV3
+# ForemanJsonapi
 
-Plugin for Foreman API v3, which is based on v2 controllers but uses format according to the [jsonapi.org  specification](http://www.jsonapi.org).
+Foreman JSONAPI plugin (v21) is based on v2 controllers but uses format according to the [jsonapi.org  specification](http://www.jsonapi.org).
 
-The v3 controllers inherit from v2 controllers. For example:
+The v21 controllers inherit from v2 controllers. For example:
 ```
 module Api
-  module V3
+  module Jsonapi
     class DomainsController < V2::DomainsController
 
-      include Api::Version3
+      include Api::Jsonapi
 
       def index
         super
@@ -26,22 +26,22 @@ See [How_to_Install_a_Plugin](http://projects.theforeman.org/projects/foreman/wi
 for how to install Foreman plugins
 
 ```ruby
-gem 'foreman_api_v3', :git => 'https://github.com/isratrade/foreman_api_v3.git
+gem 'foreman_jsonapi', :git => 'https://github.com/isratrade/foreman_jsonapi.git
 ```
 
 ## Usage
 
 ```
-GET http://example.com/api/v3/hosts
+GET http://example.com/api/v21/hosts
 ```
 
 ## Format
 
-The Foreman API v3 follows the [jsonapi.org  specification](http://www.jsonapi.org):
+The Foreman API v21 follows the [jsonapi.org  specification](http://www.jsonapi.org):
 
 #### 1) Example response for collection
 
-**GET http://example.com/api/v3/domains**
+**GET http://example.com/api/v21/domains**
 ```
 {
     "data": [
@@ -99,7 +99,7 @@ The Foreman API v3 follows the [jsonapi.org  specification](http://www.jsonapi.o
 
 #### 2) Example response for Side-load Resources by passing ?include parameter
 
-**GET /api/v2/domains?include=subnets**
+**GET /api/v21/domains?include=subnets**
 ```
 {
     "data": [
@@ -228,7 +228,7 @@ The Foreman API v3 follows the [jsonapi.org  specification](http://www.jsonapi.o
 
 #### 3) Example response for [Sparse Fieldsets](http://jsonapi.org/format/#fetching-sparse-fieldsets) or Custom Response
 
-**GET api/v3/domains?include=subnets&fields[domains]=name,fullname&fields[subnets]=name,network,network_address**
+**GET api/v21/domains?include=subnets&fields[domains]=name,fullname&fields[subnets]=name,network,network_address**
 
 ```
 {

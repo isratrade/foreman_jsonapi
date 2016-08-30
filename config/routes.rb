@@ -2,8 +2,8 @@ Foreman::Application.routes.draw do
 
   namespace :api, :defaults => {:format => 'json'} do
 
-    # new v3 routes that point to v3
-    scope "(:apiv)", :module => :v3, :defaults => {:apiv => 'v3'}, :apiv => /v1|v2|v3/, :constraints => ApiConstraints.new(:version => '3') do
+    # new v21 routes that point to jsonapi module
+    scope "(:apiv)", :module => :jsonapi, :defaults => {:apiv => 'v21'}, :apiv => /v1|v2|v21/, :constraints => ApiConstraints.new(:version => '21') do
 
       resources :foreman_tasks, :only => [:index, :show] do
         post :bulk_search, :on => :collection
@@ -145,7 +145,7 @@ Foreman::Application.routes.draw do
       resources :statistics, :only => [:index]
 
       get '/', :to => 'home#index'
-      get 'status', :to => 'home#status', :as => "v3_status"
+      get 'status', :to => 'home#status', :as => "v21_status"
 
       resources :reports, :only => [:create]
 
